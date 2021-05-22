@@ -88,12 +88,12 @@ class Producto
      public function verificarExistenciaProducto()
     {
          $_returnString = "";
-         $_arrayDeUsuarios = [];
-         $_arrayDeUsuarios = Producto::TraerTodosLosProductos();
+         $_arrayDeProductos = [];
+         $_arrayDeProductos = Producto::TraerTodosLosProductos();
  
-         if($_arrayDeUsuarios != null && $_arrayDeUsuarios != false)
+         if($_arrayDeProductos  != null && $_arrayDeProductos != false)
          {
-             foreach ($_arrayDeUsuarios as $unProducto) 
+             foreach ($_arrayDeProductos as $unProducto) 
              {
                  if($unProducto->_codigo_de_barra == $this->_codigo_de_barra)
                  {
@@ -153,84 +153,4 @@ class Producto
         
     }
 
-    public function UsuarioToCsv()    
-    {
-        $dataString = $this->_nombre;
-        $dataString .= ",";
-        $dataString .= $this->_mail;
-        $dataString .= ",";
-        $dataString .= $this->_clave;
-        $dataString .= "\n";
-        return $dataString;    
-    }
-
-   /* public function UsuarioToJson(Usuario $auxUsuario)    
-    {
-        $_auxVar = json_encode($auxUsuario);
-        return $_auxVar;    
-    }*/
-
-    public static function ArmarListado($arrayDeUsuarios = [])
-    {
-        $stringDatos = "";
-
-        foreach ($arrayDeUsuarios as $key => $unUsuario) 
-        {
-            $stringDatos .= "<ul>". "<li>" . $unUsuario->UsuarioToList() . "</li>" . "</ul>";
-        }
-        return $stringDatos;
-
-    }
-
-      public function UsuarioToList()    
-    {
-        $dataString = "Nombre: " . $this->_nombre;
-        $dataString .= "<li>";
-        $dataString = "Apellido: " . $this->_apellido;
-        $dataString .= "<li>";
-        $dataString = "Clave: " . $this->_clave;
-        $dataString .= "<li>";
-        $dataString .= "Email: " . $this->_mail;
-        $dataString .= "<li>";
-        $dataString .= "Fecha de Registro: " . $this->_fechaDeRegistro;
-        $dataString .= "<li>";
-        $dataString .= "Localidad: " . $this->_localidad;
-        $dataString .= "<li>";
-        return $dataString;    
-    }
-
-   /* public function GuardarJson(Usuario $auxUsuario)
-    {
-        $auxArchivo = fopen("usuarios.json", "a");
-        echo "<br>";
-        echo "$auxUsuario->_ruta";
-        if($auxArchivo != null)
-        {
-            fputs($auxArchivo, $this->UsuarioToJson($auxUsuario));
-            fclose($auxArchivo);
-            return true;
-        }
-        else
-        {
-           return false;
-        }   
-    }
-
-    public function Guardar()
-    {
-        $auxArchivo = fopen("usuarios.csv", "a");
-        if($auxArchivo != null)
-        {
-            fputs($auxArchivo, $this->UsuarioToCsv());
-            fclose($auxArchivo);
-            return true;
-
-        }
-        else
-        {
-           return false;
-        }
-
-        
-    }*/
 }

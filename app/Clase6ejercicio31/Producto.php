@@ -138,16 +138,6 @@ class Producto
          return $_returnString;
     }
 
-   /* public static function TraerUnCd($id) 
-	{
-			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("select id, titel as titulo, interpret as cantante,jahr as año from cds where id = $id");
-			$consulta->execute();
-			$cdBuscado= $consulta->fetchObject('cd');
-			return $cdBuscado;				
-
-			
-	}*/
     public static function TraerProductoPorCodigo($auxCodigo)
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
@@ -170,7 +160,6 @@ class Producto
     {
         $auxProducto = null;
         $auxProducto = Producto::TraerProductoPorCodigo($auxProductoCodigo);
-    //    var_dump($auxProducto);
         if($auxProducto != null)
         {
             if($auxProducto->_stock > $auxCantidad)
@@ -212,86 +201,4 @@ class Producto
         
     }
 
-
-
-    public function UsuarioToCsv()    
-    {
-        $dataString = $this->_nombre;
-        $dataString .= ",";
-        $dataString .= $this->_mail;
-        $dataString .= ",";
-        $dataString .= $this->_clave;
-        $dataString .= "\n";
-        return $dataString;    
-    }
-
-   /* public function UsuarioToJson(Usuario $auxUsuario)    
-    {
-        $_auxVar = json_encode($auxUsuario);
-        return $_auxVar;    
-    }*/
-
-    public static function ArmarListado($arrayDeUsuarios = [])
-    {
-        $stringDatos = "";
-
-        foreach ($arrayDeUsuarios as $key => $unUsuario) 
-        {
-            $stringDatos .= "<ul>". "<li>" . $unUsuario->UsuarioToList() . "</li>" . "</ul>";
-        }
-        return $stringDatos;
-
-    }
-
-      public function UsuarioToList()    
-    {
-        $dataString = "Nombre: " . $this->_nombre;
-        $dataString .= "<li>";
-        $dataString = "Apellido: " . $this->_apellido;
-        $dataString .= "<li>";
-        $dataString = "Clave: " . $this->_clave;
-        $dataString .= "<li>";
-        $dataString .= "Email: " . $this->_mail;
-        $dataString .= "<li>";
-        $dataString .= "Fecha de Registro: " . $this->_fechaDeRegistro;
-        $dataString .= "<li>";
-        $dataString .= "Localidad: " . $this->_localidad;
-        $dataString .= "<li>";
-        return $dataString;    
-    }
-
-   /* public function GuardarJson(Usuario $auxUsuario)
-    {
-        $auxArchivo = fopen("usuarios.json", "a");
-        echo "<br>";
-        echo "$auxUsuario->_ruta";
-        if($auxArchivo != null)
-        {
-            fputs($auxArchivo, $this->UsuarioToJson($auxUsuario));
-            fclose($auxArchivo);
-            return true;
-        }
-        else
-        {
-           return false;
-        }   
-    }
-
-    public function Guardar()
-    {
-        $auxArchivo = fopen("usuarios.csv", "a");
-        if($auxArchivo != null)
-        {
-            fputs($auxArchivo, $this->UsuarioToCsv());
-            fclose($auxArchivo);
-            return true;
-
-        }
-        else
-        {
-           return false;
-        }
-
-        
-    }*/
 }
