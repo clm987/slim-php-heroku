@@ -1,13 +1,13 @@
-Aplicación Slim Framework PHP con despliegue automático en Heroku.
+Aplicación Slim Framework 4 PHP con despliegue automático en Heroku.
 ==============================
 
 ## Introducción
-El principal objetivo de este repo es poder desplegar de forma automática nuestra aplicación PHP Slim Framework en Heroku.
+El principal objetivo de este repo es poder desplegar de forma automática nuestra aplicación PHP Slim Framework 4 en Heroku.
 
 ## 1- Forkear proyecto
 Como primer paso, forkeamos este proyecto desde el boton ubicado en la parte superior derecha de la pagina del repositorio.
 
-## 2- Subimos nuestro codigo
+## 2- Subimos nuestro código (opcional si agregan código)
 Una vez forkeado, clonamos el repo con `git clone <url del repo>` y agregamos nuestro codigo PHP (SLIM Framework) dentro de la carpeta `/app/`.
 Luego comiteamos y pusheamos los cambios.
 
@@ -43,7 +43,9 @@ Lo utlimo que deberiamos hacer es clic en el botón **Deploy Branch**. Esto solo
 
 ![Heroku5](https://i.ibb.co/sVYwVZx/heroku5.png)
 
-Podemos verificar desde GitHub si el depliegue se hizo con exito.
+Podemos verificar desde GitHub si el depliegue se hizo con exito. 
+
+https://github.com/flippiJS/slim-php-heroku/deployments
 
 ![Heroku6](https://i.ibb.co/K95j3fp/heroku6.png)
 
@@ -51,5 +53,51 @@ Desde el botón **View deployment** accedemos a la URL de la app desplegada.
 
 https://slim-php-heroku.herokuapp.com/
 
+## Requisitos para correr localmente
+
+- Instalar PHP o XAMPP (https://www.php.net/downloads.php o https://www.apachefriends.org/es/download.html)
+- Instalar Composer desde https://getcomposer.org/download/ o por medio de CLI:
+
+```sh
+php -r "copy('//getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('SHA384', 'composer-setup.php') === 'e115a8dc7871f15d853148a7fbac7da27d6c0030b848d9b3dc09e2a0388afed865e6a3d6b3c0fad45c48e2b5fc1196ae') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+```
+
+## Correr localmente via XAMPP
+
+- Copiar proyecto dentro de la carpeta htdocs
+
+```sh
+C:\xampp\htdocs\
+```
+- Acceder por linea de comandos a la carpeta del proyecto y luego instalar Slim framework via Compose
+
+```sh
+cd C:\xampp\htdocs\<ruta-del-repo-clonado>
+composer update
+```
+- En el archivo index.php agregar la siguiente linea debajo de `AppFactory::create();`
+
+```sh
+// Set base path
+$app->setBasePath('/app');
+```
+- Abrir desde http://localhost/app ó http://localhost:8080/app (depende del puerto configurado en el panel del XAMPP)
+
+## Correr localmente via PHP
+
+- Acceder por linea de comandos a la carpeta del proyecto y luego instalar Slim framework via Compose
+
+```sh
+cd C:\<ruta-del-repo-clonado>
+composer update
+php -S localhost:666 -t app
+```
+
+- Abrir desde http://localhost:666/
+
+## Ayuda
+Cualquier duda o consulta por el canal de slack
 
 ### 2021 - UTN FRA
