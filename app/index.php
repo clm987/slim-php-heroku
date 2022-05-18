@@ -1,5 +1,6 @@
 <?php
-error_reporting(-1);
+echo "muestro un mensaje";
+/*error_reporting(-1);
 ini_set('display_errors', 1);
 
 use Psr\Http\Message\ResponseInterface as Response;
@@ -20,4 +21,4 @@ $app->get('[/]', function (Request $request, Response $response) {
     return $response;
 });
 
-$app->run();
+$app->run();*/
